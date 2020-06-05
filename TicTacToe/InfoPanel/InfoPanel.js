@@ -1,0 +1,4 @@
+// Object constructors //
+function InfoPanel() {
+
+}
