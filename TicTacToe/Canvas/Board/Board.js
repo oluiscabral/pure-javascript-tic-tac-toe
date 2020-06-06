@@ -5,31 +5,47 @@ export default class Board {
         // Properties //
         let squareUnit;
 
-        // Objects //
+        // Contents //
         let square = createSquares();
 
         // Getters and Setters //
 
         // Public methods //
 
-        this.update = () => {
-
+        this.resize = (value) => {
+            squareUnit = value / 3;
+            updateSquares(squareUnit);
         }
 
         // Private methods //
         function createSquares() {
-            //const squareUnit = size / 3;
-            // console.log(size);
+            return [
+                [
+                    new Square(0, 0, squareUnit),
+                    new Square(0, 1, squareUnit),
+                    new Square(0, 2, squareUnit),
+                ],
+                [
+                    new Square(1, 0, squareUnit),
+                    new Square(1, 1, squareUnit),
+                    new Square(1, 2, squareUnit),
+                ],
+                [
+                    new Square(2, 0, squareUnit),
+                    new Square(2, 1, squareUnit),
+                    new Square(2, 2, squareUnit),
+                ],
+            ];
+        }
 
-            let s = new Array(3);
-            s.fill(new Array(1));
+        function updateSquares(value) {
+            for (let i = 0; i < 3; i++)
+                for (let z = 0; z < 3; z++) {
+                    square[i][z].update(value);
+                    square[i][z].draw();
+                }
 
-            /*             for (let i = 0; i < 3; i++) {
-                            for (let z = 0; z < 3; z++) {
-                                s[i][z] = new Square(i * squareUnit, z * squareUnit, size);
-                            }
-                        } */
-            return s;
+
         }
 
         this.draw = (size, context) => {
@@ -40,4 +56,3 @@ export default class Board {
 
     }
 }
-
