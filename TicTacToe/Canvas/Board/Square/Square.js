@@ -32,7 +32,6 @@ export default class Square {
                 return true;
             } else {
                 if (mouseOver) {
-                    console.log("Mouse leaves row: ", row, " and col: ", col);
                     mouseOver = false;
                 }
                 return false;

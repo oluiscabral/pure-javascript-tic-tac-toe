@@ -1,9 +1,16 @@
-import Board from './Board/Board.js';
-
 export default class Canvas {
-    constructor(element, maxSize) {
+    constructor(element) {
         // Properties //
         const canvas = create();
+
+        // Getters and setters //
+        Object.defineProperty(this, 'size', {
+            get: () => canvas.width,
+            set: (value) => {
+                canvas.width = value;
+                canvas.height = value;
+            }
+        });
 
         // Private methods //
         function create() {
@@ -13,29 +20,5 @@ export default class Canvas {
             element.appendChild(canvas);
             return canvas;
         }
-
-        function resize(elementWidth, elementHeight) {
-            if (elementWidth > maxSize && elementHeight > maxSize)
-                setSize(maxSize);
-            else
-                if (elementHeight > elementWidth)
-                    setSize(elementWidth);
-                else
-                    setSize(elementHeight);
-        }
-
-        function setSize(value) {
-            canvas.width = value;
-            canvas.height = value;
-
-            resizeContents(value);
-        }
-
-        function resizeContents(value) {
-            board.resize(value);
-        }
-
-        // Set canvas dimensions and responsiveness
-        new ResizeObserver(() => { resize(element.offsetWidth, element.offsetHeight) }).observe(element);
     }
 }
