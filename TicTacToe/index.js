@@ -1,24 +1,8 @@
-import config from "./config.js";
-import Canvas from "./Canvas/Canvas.js";
+import TicTacToe from "./TicTacToe.js";
 
-(function TicTacToe({ element, maxSize } = config) {
-    // Properties //
+// Config --
+element = document.body;
+maxSize = 650;
+//
 
-    // Objects //
-    const canvas = new Canvas(element, maxSize);
-    const board = canvas.board;
-
-    // const board = new Board();
-
-    // Getters and setters //
-
-    // Public methods //
-
-    // Private methods //
-
-
-
-
-    // Set canvas dimensions and responsiveness
-
-})();
+new TicTacToe(element, maxSize);

@@ -5,14 +5,6 @@ export default class Canvas {
         // Properties //
         const canvas = create();
 
-        // Contents //
-        const board = new Board();
-
-        // Getters and setters //
-        Object.defineProperty(this, 'board', {
-            get: () => board,
-        });
-
         // Private methods //
         function create() {
             const canvas = document.createElement("canvas");
