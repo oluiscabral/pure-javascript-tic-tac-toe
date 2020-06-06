@@ -1,24 +1,47 @@
+// Config object //
 import config from "./config.js";
-import Canvas from "./Canvas/Canvas.js";
+
+// Content classes //
+import Board from './Board/Board.js';
 
 (function TicTacToe({ element, maxSize } = config) {
     // Properties //
+    const canvas = createCanvas();
 
-    // Objects //
-    const canvas = new Canvas(element, maxSize);
-    const board = canvas.board;
+    // Contents //
+    const board = new Board();
 
-    // const board = new Board();
+    // Contents resizer //
+    function resizeContents(value) {
+        board.resize(value);
+    }
 
-    // Getters and setters //
+    // Canvas creator //
+    function createCanvas() {
+        const canvas = document.createElement("canvas");
+        canvas.id = "TicTacToe";
+        canvas.style = "background-color:#3e3e3e";
+        element.appendChild(canvas);
+        return canvas;
+    }
 
-    // Public methods //
+    // Canvas responsiveness --
+    new ResizeObserver(() => { resizeCanvas(element.offsetWidth, element.offsetHeight) }).observe(element);
 
-    // Private methods //
+    function resizeCanvas(elementWidth, elementHeight) {
+        if (elementWidth > maxSize && elementHeight > maxSize)
+            setCanvasSize(maxSize);
+        else
+            if (elementHeight > elementWidth)
+                setCanvasSize(elementWidth);
+            else
+                setCanvasSize(elementHeight);
+    }
 
-
-
-
-    // Set canvas dimensions and responsiveness
-
+    function setCanvasSize(value) {
+        canvas.width = value;
+        canvas.height = value;
+        resizeContents(value);
+    }
+    // --
 })();
