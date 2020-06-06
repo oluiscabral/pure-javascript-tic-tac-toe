@@ -1,16 +1,55 @@
 export default class Square {
-    constructor(x, y, size) {
+    constructor() {
+        let row;
+        let col;
+        let size;
 
-        this.update = (value) => {
-            size = value;
+        let x;
+        let y;
+
+        let fillX;
+        let fillY;
+
+        let mouseOver = false;
+
+        this.update = (gridRow, gridCol, gridSize) => {
+            row = gridRow;
+            col = gridCol;
+            size = gridSize;
+            updatePos();
         }
 
         this.draw = () => {
-            console.log("x: ", x, " y: ", y, " size: ", size);
+            console.log(row, col, size);
         }
 
-        Object.defineProperty(this, 'x', {
-            get: () => x,
-        });
+        this.checkMouseOver = (mouseX, mouseY) => {
+            if (mouseX >= x && mouseX <= fillX && mouseY >= y && mouseY <= fillY) {
+                if (!mouseOver) {
+                    console.log("Mouse is over row: ", row, " and col: ", col);
+                    mouseOver = true;
+                }
+                return true;
+            } else {
+                if (mouseOver) {
+                    console.log("Mouse leaves row: ", row, " and col: ", col);
+                    mouseOver = false;
+                }
+                return false;
+            }
+        }
+
+        // Private methods //
+        function updatePos() {
+            x = col * size;
+            y = row * size;
+
+            fillX = x + size;
+            fillY = y + size;
+        }
+
+        function checkMouseOver() {
+
+        }
     }
 }

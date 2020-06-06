@@ -4,7 +4,9 @@ export default class Menu {
         let height;
         let bgColor = "#41995a";
 
+        this.resize = (value) => {
 
+        }
 
     }
 }

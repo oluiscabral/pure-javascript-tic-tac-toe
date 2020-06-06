@@ -3,56 +3,51 @@ import Square from './Square/Square.js';
 export default class Board {
     constructor() {
         // Properties //
-        let squareUnit;
+        let grid = 3;
+        let gridSize;
 
         // Contents //
-        let square = createSquares();
+        const square = createSquares();
 
         // Getters and Setters //
 
         // Public methods //
-
         this.resize = (value) => {
-            squareUnit = value / 3;
-            updateSquares(squareUnit);
+            gridSize = value / grid;
+            updateSquares();
+        }
+
+        this.refresh = (size, context) => {
+            for (let pos = 0; pos < grid ** 2; pos++)
+                square[pos].draw();
+        }
+
+        this.mouseOver = (mouseX, mouseY) => {
+            for (let pos = 0; pos < grid ** 2; pos++)
+                if (square[pos].checkMouseOver(mouseX, mouseY))
+                    break;
         }
 
         // Private methods //
         function createSquares() {
-            return [
-                [
-                    new Square(0, 0, squareUnit),
-                    new Square(0, 1, squareUnit),
-                    new Square(0, 2, squareUnit),
-                ],
-                [
-                    new Square(1, 0, squareUnit),
-                    new Square(1, 1, squareUnit),
-                    new Square(1, 2, squareUnit),
-                ],
-                [
-                    new Square(2, 0, squareUnit),
-                    new Square(2, 1, squareUnit),
-                    new Square(2, 2, squareUnit),
-                ],
-            ];
+            const square = [];
+            for (let pos = 0; pos < grid ** 2; pos++)
+                square.push(new Square());
+            return square;
         }
 
-        function updateSquares(value) {
-            for (let i = 0; i < 3; i++)
-                for (let z = 0; z < 3; z++) {
-                    square[i][z].update(value);
-                    square[i][z].draw();
+        function updateSquares() {
+            let gridRow = 0;
+            let gridCol = 0;
+
+            for (let pos = 0; pos < grid ** 2; pos++) {
+                square[pos].update(gridRow, gridCol, gridSize);
+                gridCol++;
+                if (gridCol == grid) {
+                    gridCol = 0;
+                    gridRow++;
                 }
-
-
+            }
         }
-
-        this.draw = (size, context) => {
-            for (let i = 0; i < 3; i++)
-                for (let z = 0; z < 3; z++)
-                    square[i][z].draw();
-        }
-
     }
 }

@@ -6,6 +6,8 @@ import Canvas from "./Canvas/Canvas.js";
 
     // Objects //
     const canvas = new Canvas(element, maxSize);
+    const board = canvas.board;
+
     // const board = new Board();
 
     // Getters and setters //

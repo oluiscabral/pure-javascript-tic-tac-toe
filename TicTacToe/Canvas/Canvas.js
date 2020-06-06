@@ -1,13 +1,16 @@
+import Board from './Board/Board.js';
+
 export default class Canvas {
     constructor(element, maxSize) {
         // Properties //
         const canvas = create();
 
-        // Objects //
+        // Contents //
+        const board = new Board();
 
         // Getters and setters //
-        Object.defineProperty(this, 'context', {
-            get: () => canvas.getContext("2d")
+        Object.defineProperty(this, 'board', {
+            get: () => board,
         });
 
         // Private methods //
@@ -32,6 +35,12 @@ export default class Canvas {
         function setSize(value) {
             canvas.width = value;
             canvas.height = value;
+
+            resizeContents(value);
+        }
+
+        function resizeContents(value) {
+            board.resize(value);
         }
 
         // Set canvas dimensions and responsiveness
