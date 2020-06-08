@@ -5,25 +5,25 @@ import Board from './Contents/Board/Board.js';
 import Responsiveness from './Features/Responsiveness/Responsiveness.js';
 
 export default class TicTacToe {
-    constructor(designConfig, playersConfig) {
-        // Game element container initializer //
-        const {
-            element
-        } = designConfig;
+    constructor(designConfig) {
+        this.#designSetup(designConfig);
+    }
 
-        // Canvas initializer //
-        const canvas = document.createElement("canvas");
+    #canvas;
+
+    #designSetup = (config) => {
+        const {
+            element,
+            maxSize
+        } = config;
+
+        canvas = document.createElement("canvas");
         canvas.id = "TicTacToe";
         canvas.style = "background-color:#3e3e3e";
         element.appendChild(canvas);
 
-        // Contents //
-        const contents = {
-            board: new Board(minStreak, playersConfig),
-        };
+        this.#canvas = canvas;
 
-
-        // Features //
-        new Responsiveness(element, canvas, designConfig.maxSize, contents); // All contents must have a public 'resize' method and be in the property's object
+        new Responsiveness(element, canvas, maxSize);
     }
 }
