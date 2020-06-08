@@ -1,4 +1,4 @@
-import MouseEvents from './MouseEvents/MouseEvents.js';
+import MouseEvents from './../MouseEvents/MouseEvents.js';
 
 export default class Responsiveness {
     constructor(element, canvas, maxSize, contents) {

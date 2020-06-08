@@ -1,3 +1,5 @@
+import Marker from './Marker/Marker.js';
+
 export default class Square {
     constructor(row, col) {
         // Properties //
@@ -7,6 +9,7 @@ export default class Square {
         let fillX;
         let fillY;
         let mouseOver = false;
+        let marker = null;
 
         // Public methods //
         this.info = () => {
@@ -23,25 +26,36 @@ export default class Square {
         }
 
         this.mouseMove = (mouseX, mouseY, context, boardLineWidth) => {
-            if (mouseX >= x && mouseX < fillX && mouseY >= y && mouseY < fillY) {
+            if (checkMouseOver(mouseX, mouseY)) {
                 if (!mouseOver) {
                     console.log("Marker animation")
                     mouseOver = true;
                 }
             } else if (mouseOver) {
                 console.log("End marker animation");
-                clearRect(context, boardLineWidth);
+
                 mouseOver = false;
             }
         }
 
         this.mouseOut = (context, boardLineWidth) => {
             if (mouseOver) {
-                clearRect(context, boardLineWidth);
+                console.log("End marker animation");
                 mouseOver = false;
                 return true;
             }
             return false;
+        }
+
+        this.mouseClick = (mouseX, mouseY, context, boardLineWidth) => {
+            if (checkMouseOver(mouseX, mouseY)) {
+                Marker.mark(x + boardLineWidth / 2, y + boardLineWidth / 2, context);
+                return true;
+            } else {
+                return false;
+            }
+
+
         }
 
         // Private methods //
@@ -51,6 +65,13 @@ export default class Square {
 
             fillX = x + size;
             fillY = y + size;
+        }
+
+        function checkMouseOver(mouseX, mouseY) {
+            if (mouseX >= x && mouseX < fillX && mouseY >= y && mouseY < fillY)
+                return true;
+            else
+                return false;
         }
 
         function fillRect(context, boardLineWidth) {

@@ -1,5 +1,4 @@
 // Contents //
-import Players from './Players/Players.js';
 import Board from './Contents/Board/Board.js';
 
 // Features //
@@ -20,11 +19,9 @@ export default class TicTacToe {
 
         // Contents //
         const contents = {
-            board: new Board(),
+            board: new Board(minStreak, playersConfig),
         };
 
-        // Players //
-        const players = new Players(playersConfig);
 
         // Features //
         new Responsiveness(element, canvas, designConfig.maxSize, contents); // All contents must have a public 'resize' method and be in the property's object

@@ -1,13 +1,17 @@
 import Square from './Square/Square.js';
+import Core from './Core/Core.js';
 
 export default class Board {
-    constructor() {
+    constructor(minStreak, playersConfig) {
         // Properties //
         let size;
         let grid = 3;
         let gridSize;
         let active = true;
         let lineWidth; // it's used for set size limits to each board square
+
+        // Core //
+        const core = new Core(grid, minStreak, playersConfig);
 
         // Contents //
         const square = createSquares();
@@ -30,25 +34,17 @@ export default class Board {
             context.strokeStyle = '#FFFFFF';
             context.lineWidth = lineWidth;
 
-            context.beginPath();
-            context.moveTo(gridSize, 0);
-            context.lineTo(gridSize, size);
-            context.stroke();
+            for (let i = 1; i < grid; i++) {
+                context.beginPath();
+                context.moveTo(gridSize * i, 0);
+                context.lineTo(gridSize * i, size);
+                context.stroke();
 
-            context.beginPath();
-            context.moveTo(gridSize * 2, 0);
-            context.lineTo(gridSize * 2, size);
-            context.stroke();
-
-            context.beginPath();
-            context.moveTo(0, gridSize);
-            context.lineTo(size, gridSize);
-            context.stroke();
-
-            context.beginPath();
-            context.moveTo(0, gridSize * 2);
-            context.lineTo(size, gridSize * 2);
-            context.stroke();
+                context.beginPath();
+                context.moveTo(0, gridSize * i);
+                context.lineTo(size, gridSize * i);
+                context.stroke();
+            }
         }
 
         this.mouseMove = (mouseX, mouseY, context) => {
@@ -60,6 +56,13 @@ export default class Board {
             for (let pos = 0; pos < grid ** 2; pos++)
                 if (square[pos].mouseOut(context, lineWidth))
                     break;
+        }
+
+        this.mouseClick = (mouseX, mouseY, context) => {
+            for (let pos = 0; pos < grid ** 2; pos++)
+                if (square[pos].mouseClick(mouseX, mouseY, context, lineWidth)) {
+                    core.newMove(console.log("[row,col]"));
+                }
         }
 
         // Private methods //
