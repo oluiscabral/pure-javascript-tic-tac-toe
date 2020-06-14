@@ -3,15 +3,6 @@ export default class Canvas {
         // Properties //
         const canvas = create();
 
-        // Getters and setters //
-        Object.defineProperty(this, 'size', {
-            get: () => canvas.width,
-            set: (value) => {
-                canvas.width = value;
-                canvas.height = value;
-            }
-        });
-
         // Private methods //
         function create() {
             const canvas = document.createElement("canvas");
