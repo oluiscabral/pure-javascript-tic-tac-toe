@@ -6,16 +6,25 @@ const design = {
     maxSize: 500,
 };
 
-const players = [
-    {
-        marker: 'X',
-        bot: false
-    },
-    {
-        marker: 'O',
-        bot: false
-    },
-];
+const gameConfig = {
+    players: [
+        {
+            marker: 'X',
+            bot: false
+        },
+        {
+            marker: 'O',
+            bot: false
+        },
+    ],
+
+    board: {
+        grid: 3,
+        minStreak: 3,
+        allowSquares: false,
+    }
+}
+
 //
 
-new TicTacToe(design, players);
+new TicTacToe();
