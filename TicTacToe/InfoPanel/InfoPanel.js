@@ -1,4 +1,0 @@
-// Object constructors //
-function InfoPanel() {
-
-}
