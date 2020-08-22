@@ -1,11 +1,8 @@
 import Square from './Square/Square.js';
-import DrawingUtils from '../DrawingUtils.js';
 
 export default class Board {
     // Properties //
     #game;
-    #width;
-    #height;
     #size;
     #grid = 3;
     #gridSize;
@@ -84,7 +81,7 @@ export default class Board {
     }
 
     // This content class already initialize itself on constructor //
-    constructor(display) {
-        console.log(display)
+    constructor(gridSize) {
+        this.#gridSize = gridSize;
     }
 }

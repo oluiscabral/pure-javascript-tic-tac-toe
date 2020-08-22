@@ -42,10 +42,5 @@ export default class DefaultConfig {
                 marker: 'O'
             }
         ],
-
-        info_panel: {
-            onTop: false,
-            hideable: true
-        }
     }
 }
