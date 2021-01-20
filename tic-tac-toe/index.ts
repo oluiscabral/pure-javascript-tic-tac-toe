@@ -1,6 +1,6 @@
 class TicTacToe {
-    private board: Board;
+    private canvas: Presentation;
     constructor(element: HTMLElement, width: number, height: number) {
-        this.board = new Board(element, width, height);
+        this.canvas = new Presentation(element, width, height);
     }
 }
