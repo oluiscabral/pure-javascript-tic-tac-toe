@@ -14,7 +14,6 @@ class Presentation {
         canvas.id = "TicTacToe";
         canvas.width = width;
         canvas.height = height;
-        canvas.style.backgroundColor = "#3e3e3e";
         element.appendChild(canvas);
         return canvas;
     }
