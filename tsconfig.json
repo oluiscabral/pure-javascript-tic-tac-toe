@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES3",
+        "module": "None",
+        "allowJs": true,
+        "alwaysStrict": true,
+        "outFile": "./index.js",
+        "removeComments": true,
+        "sourceRoot": "./",
+        "inlineSourceMap": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "./tic-tac-toe"
+    ]
+}

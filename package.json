@@ -1,0 +1,22 @@
+{
+  "name": "pure-javascript-tic-tac-toe",
+  "version": "1.0.0",
+  "description": "Classic Tic Tac Toe game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oluiscabral/pure-javascript-tic-tac-toe.git"
+  },
+  "author": "oluiscabral",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oluiscabral/pure-javascript-tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/oluiscabral/pure-javascript-tic-tac-toe#readme",
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
